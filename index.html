@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF a LaTeX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PDF → LaTeX</h1>
+      <p class="subtitle">Convierte cualquier PDF (incluyendo escaneados) a código LaTeX</p>
+    </header>
+
+    <main>
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-icon">📄</div>
+        <p class="drop-title">Arrastra tu PDF aquí</p>
+        <p class="drop-sub">o haz clic para seleccionar</p>
+        <button class="btn" onclick="document.getElementById('file-input').click()">Seleccionar PDF</button>
+        <input type="file" id="file-input" accept="application/pdf" style="display:none;">
+      </div>
+
+      <div id="file-info" class="file-info hidden">
+        <span class="file-icon">📎</span>
+        <div class="file-details">
+          <p id="file-name"></p>
+          <p id="file-size"></p>
+        </div>
+        <button class="btn btn-primary" id="convert-btn" onclick="convertPDF()">Convertir a LaTeX</button>
+      </div>
+
+      <div id="page-info" class="page-info hidden"></div>
+
+      <div id="status-area" class="status-area hidden">
+        <div class="spinner"></div>
+        <span id="status-text"></span>
+      </div>
+
+      <div id="error-area" class="error-area hidden">
+        <p id="error-text"></p>
+      </div>
+
+      <div id="result-area" class="result-area hidden">
+        <div class="result-header">
+          <span class="result-label">Código LaTeX generado</span>
+          <div class="result-actions">
+            <button class="btn" onclick="copyLatex()">📋 Copiar</button>
+            <button class="btn" onclick="downloadLatex()">⬇️ Descargar .tex</button>
+            <button class="btn" onclick="resetApp()">🔄 Nuevo PDF</button>
+          </div>
+        </div>
+        <textarea id="latex-output" class="latex-output" readonly></textarea>
+        <p id="copy-confirm" class="copy-confirm hidden">✅ ¡Copiado al portapapeles!</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
